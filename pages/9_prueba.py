@@ -80,7 +80,7 @@ plot_options = ['Boxplot','Violinplot','Dotplot']
 
 gene = st.text_input('Select gene').upper()
 # Identify if indicated gene is present in the data
-data = pd.read_csv('data/log2FC_expression.csv')
+data = pd.read_csv('Data/log2FC_expression.csv')
 if gene == '':
     st.error('Indicate a gene')
 elif gene != '' and gene not in data['gene'].values:
