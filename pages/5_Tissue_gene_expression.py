@@ -218,7 +218,7 @@ if st.button(f'Create {plot}'):
     if gene != '':
         groups = [] # List with the names of the tissue
         values = [] # List with the exoression values
-        if tumor != None:
+        if tumor != '':
             # Load dictionary with tcga data  
             if 'A' <= gene[0] <= 'C':
                 data = 'Data/tcga_AC.pkl'
