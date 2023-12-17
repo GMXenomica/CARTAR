@@ -248,9 +248,9 @@ if st.button(f'Create {plot}'):
             data = 'Data/gtex_KN.pkl'
         elif 'O' <= gene[0] <= 'R':
             data = 'Data/gtex_OR.pkl'
-         elif 'S' <= gene[0] <= 'T':
+        elif 'S' <= gene[0] <= 'T':
             data = 'Data/gtex_ST.pkl'
-         elif 'U' <= gene[0] <= 'Z':
+        elif 'U' <= gene[0] <= 'Z':
             data = 'Data/gtex_UZ.pkl'
         with open(data, 'rb') as archivo:
             gtex = pickle.load(archivo)
