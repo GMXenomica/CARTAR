@@ -219,7 +219,7 @@ if st.button(f'Create {plot}'):
         # If gene and tumor abreviation in data
         if gene in data['gene'].values:  
             # Load dictionary with tcga data  
-            if 'A' <= gene[0] <= 'C'
+            if 'A' <= gene[0] <= 'C':
                 data = 'Data/tcga_AC.pkl'
             elif 'D' <= gene[0] <= 'J':   
                 data = 'Data/tcga_DJ.pkl'
