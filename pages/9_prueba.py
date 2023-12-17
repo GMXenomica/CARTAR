@@ -265,7 +265,7 @@ if st.button(f'Create {plot}'):
                         x = 0
                     group = 'Normal'
                     for value in gtex[gene][gtex_tcga[tumor]]:
-                        categories.append(gtex_tcga[tumor])
+                        categories.append(tumor)
                         groups.append(group)
                         values.append(value)                    
             
