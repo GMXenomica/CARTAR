@@ -7,7 +7,6 @@ import pandas as pd
 from math import log2
 import numpy as np
 import seaborn as sns
-import requests
 from scipy.stats import mannwhitneyu
 import pickle
 
