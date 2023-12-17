@@ -183,9 +183,9 @@ if st.button('Create barplot'):
         fig.update_traces(hovertemplate='%{customdata}')
         # Customize graph titile and axis names
         if scale == 'log2(TPM+1)':
-            fig.update_layout(title=f'{gene} expression comparison between tumoral conditions', title_x=0.2, xaxis_title='Tumor type', yaxis_title= f'{gene} expression in log2(TPM+1)', barmode='group')
+            fig.update_layout(title=f'{gene} expression comparison between tumoral conditions', title_x=0.165, xaxis_title='Tumor type', yaxis_title= f'{gene} expression in log2(TPM+1)', barmode='group')
         else:
-            fig.update_layout(title=f'{gene} expression comparison between tumoral conditions', title_x=0.2, xaxis_title='Tumor type', yaxis_title= f'{gene} expression in TPM', barmode='group')
+            fig.update_layout(title=f'{gene} expression comparison between tumoral conditions', title_x=0.165, xaxis_title='Tumor type', yaxis_title= f'{gene} expression in TPM', barmode='group')
         # Show the graph and table
         st.header('Interactive barplot', divider='rainbow')
         st.plotly_chart(fig,use_container_width=True)
