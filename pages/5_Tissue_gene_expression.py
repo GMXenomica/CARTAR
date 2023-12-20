@@ -260,7 +260,7 @@ if st.button(f'Create {plot}'):
         if 'A' <= gene[0] <= 'C':
             data = 'Data/gtex_AC.pkl'
         elif 'D' <= gene[0] <= 'J':   
-            ata = 'Data/gtex_DJ.pkl'
+            data = 'Data/gtex_DJ.pkl'
         elif 'K' <= gene[0] <= 'N':
             data = 'Data/gtex_KN.pkl'
         elif 'O' <= gene[0] <= 'R':
