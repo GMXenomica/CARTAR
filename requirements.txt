@@ -2,4 +2,4 @@ plotly==5.17.0
 matplotlib==3.8.1
 seaborn==0.13.0
 scipy
-statsmodels.stats.multitest
+statsmodels
