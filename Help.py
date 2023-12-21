@@ -62,8 +62,8 @@ mystyle = '''
     '''
 
 st.markdown(mystyle, unsafe_allow_html=True)
-
-st.write('# Welcome to CARTAR')
+st.title('Welcome to CARTAR')
+st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 st.markdown('### Introduction')
 st.markdown('The CARTAR web page offers a suite of tools designed to facilitate the identification of potential targets for Chimeric Antigen Receptor (CAR) therapies. Leveraging expression data from The Cancer Genome Atlas (TCGA) project ([tcga_RSEM_gene_tpm](https://toil-xena-hub.s3.us-east-1.amazonaws.com/download/tcga_RSEM_gene_tpm.gz)) and the Genotype-Tissue Expression (GTEx) project ([gtex_RSEM_gene_tpm](https://toil-xena-hub.s3.us-east-1.amazonaws.com/download/gtex_RSEM_gene_tpm.gz)), our platform focuses on pinpointing tumor-associated antigens, ensuring target selectivity, and assessing specificity.')
 st.markdown('CARTAR is based on RNA sequencing expression data of 10,522 samples from the TCGA project and 7,858 samples from the GTEx project, using a standard pre-processing pipeline.') 
