@@ -67,7 +67,7 @@ st.write(
 )
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-tissue_options = ['Adrenal Gland','Ampulla of Vater','Biliary Tract','Bladder/Urinary Tract','Bone','Bowel','Breast','CNS/Brain','Cervix','Esophagus/Stomach','Eye','Fibroblast','Head and Neck','Kidney','Liver','Lung','Lymphoid','Myeloid','Ovary/Fallopian Tube','Pancreas','Peripheral Nervous System','Pleura','Prostate','Skin','Soft Tissue','Testis','Thyroid','Uterus','Vulva/Vagina', 'Other', 'Normal']
+tissue_options = ['Adrenal Gland','Ampulla of Vater','Biliary Tract','Bladder/Urinary Tract','Bone','Bowel','Breast','CNS/Brain','Cervix','Esophagus/Stomach','Eye','Fibroblast','Head and Neck','Kidney','Liver','Lung','Lymphoid','Myeloid','Ovary/Fallopian Tube','Pancreas','Peripheral Nervous System','Pleura','Prostate','Skin','Soft Tissue','Testis','Thyroid','Uterus','Vulva/Vagina', 'Other']
 expression_options = ['Overexpression', 'Underexpression']
 scale_options = ['TPM','log2(TPM+1)']
 data = open('Data/genes_cells.csv','r')
