@@ -91,7 +91,7 @@ if ' ' in genes and ',' not in genes:
 elif ', ' in genes or ' ,' in genes:
     genes = genes.replace(' ','')
 if  genes == '':
-    st.error('Introduce at least one gene symbol')
+    st.error('Introduce at least one gene symbol. You can try CEACAM6,DPEP1')
 else:
     genes = genes.split(',')
     for gene in genes:
