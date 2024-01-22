@@ -76,7 +76,7 @@ for line in data:
     data_list.extend(line.split(','))
 gene = st.text_input('Select gene').upper()  # Introduce gene
 if gene == '':
-    st.error('Introduce gene')
+    st.error('Introduce gene. You can try CEACAM6')
 if 'MORF' not in gene:
     if 'ORF' in gene:
         gene = gene.replace('ORF','orf')
