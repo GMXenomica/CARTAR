@@ -90,7 +90,7 @@ gene = st.text_input('Enter gene symbol').upper()
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
 if gene == '':
-    st.error('Introduce gene symbol')
+    st.error('Introduce gene symbol. You can try CEACAM6')
 elif gene != '' and gene not in data['gene'].values:
     st.error(f'{gene} gene symbol not found')
 tumors = st.multiselect('Select tumors (optional)', tumor_options)
