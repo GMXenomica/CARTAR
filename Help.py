@@ -50,7 +50,7 @@ def add_logo(png_file):
         logo_markup,
         unsafe_allow_html=True,
     )
-google-site-verification: google585e55e9d835d356.html
+
 add_logo('logo_v2.png')
 
 mystyle = '''
