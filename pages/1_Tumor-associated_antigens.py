@@ -157,16 +157,16 @@ if st.button('Show tumor-associated genes'):
                             final['Control sample size'].append(medians[gene][tumor][group][1])
                     final['p_value'].append(p_value)
                     final['p_adjusted'].append(adjusted_p_values[n])
-                    if p_value < 0.001:
+                    if adjusted_p_values[n] < 0.001:
                         final['Significance'].append('<0.001')
-                    elif p_value < 0.01:
+                    elif adjusted_p_values[n] < 0.01:
                         final['Significance'].append('<0.01')
-                    elif p_value < 0.05:
+                    elif adjusted_p_values[n] < 0.05:
                         final['Significance'].append('<0.05')
                     else: 
                         final['Significance'].append('No significant')
                 figure['adjusted_p_value'].append(-(math.log10(adjusted_p_values[n])))
-                if p_value < 0.05 and gene in selected_genes:
+                if adjusted_p_values[n] < 0.05 and gene in selected_genes:
                     figure['Legend'].append('Above threshold')
                 else:
                     figure['Legend'].append('Below threshold')
