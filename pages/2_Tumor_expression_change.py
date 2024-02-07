@@ -154,7 +154,7 @@ if st.button('Show Fold Change'):
         table_data = pd.DataFrame(t_data)
         st.header('Data table', divider='rainbow')
         st.write(
-            f'The {scale} expression for the specified genes between the "Primary tumor" and "Control" samples is displayed in the table below. To determine whether the expression difference is statistically significant across these conditions, refer to the [**Tumor Gene Expression Tool**](https://cartar-car-targets.streamlit.app/Tumor_gene_expression). For insights into whether any gene is expressed in healthy GTEx tissues, visit the [**Tissue Gene Expression Tool**](https://cartar-car-targets.streamlit.app/Tissue_gene_expression) to assess its specificity. Click on the column names to sort the tumors based on the respective column in ascending or descending order. Please note that **p-values under 0.001 are rounded to 0**; for the complete decimal value, click on the respective cell.'
+            f'The {scale} expression for the specified genes between the "Primary tumor" and "Control" samples is displayed in the table below. To determine whether the expression difference is statistically significant across these conditions, refer to the [**Tumor Gene Expression Tool**](https://cartar-car-targets.streamlit.app/Tumor_gene_expression). For insights into whether any gene is expressed in healthy GTEx tissues, visit the [**Tissue Gene Expression Tool**](https://cartar-car-targets.streamlit.app/Tissue_gene_expression) to assess its specificity. Click on the column names to sort the tumors based on the respective column in ascending or descending order.'
         )
         st.dataframe(table_data, hide_index=True)
         st.write(
