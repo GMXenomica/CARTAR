@@ -246,7 +246,7 @@ if st.button(f'Show correlation'):
             )
             st.header('Data table', divider='rainbow')
             st.write(
-                f'The table below displays the expression values of each gene for all samples. You can enhance your exploration by clicking on the column names to sort the tumors based on that column either from highest to lowest or vice versa. Please note that **p-values under 0.001 are rounded to 0**; for the complete decimal value, click on the respective cell.'
+                f'The table below displays the expression values of each gene for all samples. You can enhance your exploration by clicking on the column names to sort the tumors based on that column either from highest to lowest or vice versa.'
             )
             st.dataframe(table_data, hide_index=True)
             st.write(
