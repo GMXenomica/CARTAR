@@ -68,9 +68,7 @@ add_logo('logo_v2.png')
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Gene expression across tumors')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
-st.write(
-    'This tool generates the specified plot comparing expression values of the selected gene, considering the chosen scale, between "Primary tumor" and "Normal" samples. Additionally, it provides a table with all relevant data. The expression data is sourced from the TCGA project, and GTEx expression data is included in the corresponding control group. If no tumor is indicated, the tool will report the expression data for the selected gene across all tumors.'
-)
+st.write('This tool can be used to generate boxplots, violin plots, or dot plots for the expression values of a gene of interest in primary tumor and control samples of desired tumor groups. Besides, median expression values, sample sizes of each group, and statistical significance of differential expression (obtained by Mann-Whitney U test) between "Primary tumor" and "Control" samples are reported in table format. This provide more detailed information than the **Tumor median expression tool** while no information about "Metastatic" samples is included due to its reduced sample size. In case of Skin Cutaneous Melanoma (SKCM), the only tumor group with a large "Metastatic" sample size (N=366) you can go to the **Metastatic gene expression tool** to compare between the three sample groups.')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 tumor_options  = ['ACC','BLCA','BRCA','CESC','CHOL','COAD','DLBC','ESCA','GBM','HNSC','KICH','KIRC','KIRP','LAML','LGG','LIHC','LUAD','LUSC','OV','PAAD','PCPG','PRAD','READ','SARC','SKCM','STAD','TGCT','THCA','THYM','UCEC','UCS']
