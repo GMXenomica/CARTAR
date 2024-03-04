@@ -7,4 +7,4 @@ The respository contains all the code and files used to bild the CARTAR webserve
 **Folders**
 - Data: contains the files with the processed data used by CARTAR
 - Pages: contains the python code used to built the CARTAR tools with streamlit
-- Pre-processing: contains the python code used to treat the raw data to get the files in the Data folder (pending upload)
+- Pre-processing: contains the python code used to treat the raw data to get the files in the Data folder
