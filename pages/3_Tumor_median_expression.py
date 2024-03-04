@@ -110,6 +110,7 @@ if selection == 'TPM':
     scale = 'TPM'
 elif selection == 'log2(TPM+1)':
     scale = 'log2(TPM+1)'
+st.info('TPM = Transcript Per Million')
 
 if st.button('Create barplot'):
     if gene != '' and gene in data['gene'].values: 
