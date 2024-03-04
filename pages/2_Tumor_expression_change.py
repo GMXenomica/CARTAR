@@ -63,7 +63,7 @@ st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Gene expression change across tumors')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 st.write(
-    'This tool will generate a table indicating the fold change (FC) expression between \"Primary tumor\" and \"Control\" samples for the specified genes, considering the selected scale and tumor types. If no tumor is specified, it will display the expression changes across all tumors.'
+    'This tool can be used to identify overexpressed or underexpressed genes in your chosen tumor by inputting the desired fold change ("Primary tumor" compared to "Control" samples). An interactive volcano plot will be shown where the y-axis represent the -log10(p-value), while the x-axis is the log2(fold change). Genes meeting the specified criteria and with an adjusted p-value < 0.05 are highlighted and shown in a table. Tumoral overexpressed genes (with a fold change higher than one) can be used to identify antigens associated with the indicated tumor. The greater the fold change the more associated to the tumor the shown genes will be. You can also identify genes that are underexpressed in tumor samples compared to control ones in case you are looking for candidate genes to design a NOT-gate CAR.'
 )
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
