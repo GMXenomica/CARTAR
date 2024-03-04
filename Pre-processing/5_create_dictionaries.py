@@ -32,8 +32,8 @@ for line in data:
                         tumor_replicates[name] = [n]
                     else:
                         tumor_replicates[name].append(n)
-                elif 'Normal' in field:
-                    name = abr + '_Normal'
+                elif 'Control' in field:
+                    name = abr + '_Control'
                     if name not in tumor_replicates.keys():
                         tumor_replicates[name] = [n]
                     else:
@@ -257,8 +257,8 @@ for line in data:
                         tissue_replicates[name] = [n]
                     else:
                         tissue_replicates[name].append(n)
-                elif 'Normal' in field:
-                    name = 'Normal'
+                elif 'Control' in field:
+                    name = 'Control'
                     if name not in tissue_replicates.keys():
                         tissue_replicates[name] = [n]
                     else:
@@ -273,7 +273,7 @@ for line in data:
             elif field in gtex_tcga.values():   
                 for abr, tissue in gtex_tcga.items():
                     if field == tissue and abr == 'SKCM':
-                        name = 'Normal'
+                        name = 'Control'
                         if name not in tissue_replicates.keys():
                             tissue_replicates[name] = [n]
                         else:
@@ -319,8 +319,8 @@ for line in data:
                         tumor_replicates[name] = [n]
                     else:
                         tumor_replicates[name].append(n)
-                elif 'Normal' in field:
-                    name = abr + '_Normal'
+                elif 'Control' in field:
+                    name = abr + '_Control'
                     if name not in tumor_replicates.keys():
                         tumor_replicates[name] = [n]
                     else:
@@ -328,7 +328,7 @@ for line in data:
             else:                     
                 for tumor, tissue in gtex_tcga.items():
                     if abr == tissue:
-                        name = tumor + '_Normal'
+                        name = tumor + '_Control'
                         if name not in tumor_replicates.keys():
                             tumor_replicates[name] = [n]
                         else:
@@ -354,7 +354,7 @@ for line in data:
 with open('../Data/Processed/median.pkl', 'wb') as archivo:
     pickle.dump(result, archivo)   
 
-# Create dictionary with tumor median and p-values comparing 'Primary tumor' and 'Normal' samples
+# Create dictionary with tumor median and p-values comparing 'Primary tumor' and 'Control' samples
 
 # Identifiy the position of each tumor_group in the lines
 for line in data:
@@ -367,7 +367,7 @@ for line in data:
         result[gene] = {}
         for tumor in tumors:
             T = tumor + '_Tumor'
-            N = tumor + '_Normal'
+            N = tumor + '_Control'
             N_values = []
             T_values = []
             for index in tumor_replicates[T]:
