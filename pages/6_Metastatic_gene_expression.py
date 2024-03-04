@@ -198,7 +198,7 @@ if st.button(f'Create {plot}'):
         with open('Data/SKCM.pkl', 'rb') as archivo:
             SKCM = pickle.load(archivo)
         # Get requested information
-        groups = [] # Gruops of tumor (Metastatic, Primary or Normal)
+        groups = [] # Gruops of tumor (Metastatic, Primary or Control)
         values = [] # Expression values
         for group in SKCM[gene]['SKCM'].keys():
             for value in SKCM[gene]['SKCM'][group]:
@@ -208,25 +208,25 @@ if st.button(f'Create {plot}'):
                 values.append(value)
         data = {'Tumor': groups, 'Values':values}
         df = pd.DataFrame(data)
-        group_order = ['Metastatic', 'Primary', 'Normal']
+        group_order = ['Metastatic', 'Primary', 'Control']
         df['Tumor'] = pd.Categorical(df['Tumor'], categories=group_order, ordered=True)
         df = df.sort_values(by=['Tumor'])
         # Create the boxplot
         if plot == 'Boxplot':
             plt.figure()
-            sns.boxplot(data=df, x='Tumor', y='Values', hue='Tumor', legend=False, showfliers=False, palette={'Primary': 'lightseagreen', 'Normal': 'tan', 'Metastatic':'grey'})
+            sns.boxplot(data=df, x='Tumor', y='Values', hue='Tumor', legend=False, showfliers=False, palette={'Primary': 'lightseagreen', 'Control': 'tan', 'Metastatic':'grey'})
             xmin, xmax, ymin, ymax = plt.axis()
             # Statistical significant differences and customize the plot
             plot_significance('SKCM',0,ymin,ymax)
         # Create the violin plot
         if plot == 'Violin plot':
-            sns.violinplot(x='Tumor', y='Values', hue='Tumor', data=df, inner='quartile', density_norm='width',palette={'Primary': 'lightseagreen', 'Normal': 'tan', 'Metastatic':'grey'}, legend=False)
+            sns.violinplot(x='Tumor', y='Values', hue='Tumor', data=df, inner='quartile', density_norm='width',palette={'Primary': 'lightseagreen', 'Control': 'tan', 'Metastatic':'grey'}, legend=False)
             xmin, xmax, ymin, ymax = plt.axis()
             # Statistical significant differences and customize the plot
             plot_significance('SKCM',1,ymin,ymax)        
         # Create the dotplot
         if plot == 'Dot plot':
-            sns.stripplot(x='Tumor', y='Values', jitter=True, data=data, hue='Tumor', size=4, palette={'Primary': 'lightseagreen', 'Normal': 'tan', 'Metastatic':'grey'})
+            sns.stripplot(x='Tumor', y='Values', jitter=True, data=data, hue='Tumor', size=4, palette={'Primary': 'lightseagreen', 'Control': 'tan', 'Metastatic':'grey'})
             plt.xlim(-0.5, 2.5)
             xmin, xmax, ymin, ymax = plt.axis()
             # Calculate the medians for each group
