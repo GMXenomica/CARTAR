@@ -201,10 +201,11 @@ if st.button(f'Create {plot}'):
         groups = [] # Gruops of tumor (Metastatic, Primary or Normal)
         values = [] # Expression values
         for group in SKCM[gene]['SKCM'].keys():
-            if group == 'Normal':
-                group = 'Control'
             for value in SKCM[gene]['SKCM'][group]:
-                groups.append(group)
+                if group == 'Normal':
+                    groups.append('Control')
+                else:
+                    groups.append(group)
                 if scale == 'log2(TPM+1)':
                     value = log2(value+1)
                 values.append(value)
