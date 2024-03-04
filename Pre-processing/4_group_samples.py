@@ -21,8 +21,8 @@ for column in tcga.columns:
             tag = ''
         elif group == 'Metastatic': 
             tag = '_Metastatic'
-        elif 'Normal' in group:
-            tag = '_Normal'
+        elif 'Control' in group:
+            tag = '_Control'
         sample_group = tumor + tag
         if sample_group not in tumors.keys():
             tumors[sample_group] = [column]
@@ -81,7 +81,7 @@ tcga.to_csv('../Data/Processed/tcga_gtex_combined_data.csv', index=False)
 # Add the GTEX control samples to the corresponding group in the dictionary
 for control in gtex_tcga.keys():
     tissue = gtex_tcga[control]
-    group = control + '_Normal'
+    group = control + '_Control'
     if group in tumors.keys():
         tumors[group].extend(tissues[tissue])
     else:
