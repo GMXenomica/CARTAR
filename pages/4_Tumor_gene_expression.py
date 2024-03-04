@@ -120,6 +120,7 @@ if selection2 == 'TPM':
     scale = 'TPM'
 elif selection2 == 'log2(TPM+1)':
     scale = 'log2(TPM+1)'
+st.info('TPM = Transcript Per Million')
 
 # Generate the data for the plot function
 def plot_data(data):
