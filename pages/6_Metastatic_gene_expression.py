@@ -64,9 +64,7 @@ add_logo('logo_v2.png')
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Metastatic gene expression in SKCM')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
-st.write(
-    'This tool will generate the specified plot, comparing expression values of the selected gene in the chosen scale among the "Metastatic," "Primary tumor," and "Normal" samples of Skin Cutaneous Melanoma (SKCM). A table containing all relevant data accompanies this plot. This option is exclusively available for SKCM, owing to the limited number of "Metastatic" samples in other tumors. Data is sourced from the TCGA project, and GTEx expression data has been incorporated into the corresponding control group.'
-)
+st.write('This tool can be used to generate boxplots, violin plots, or dot plots for the expression values of a gene of interest for the "Primary tumor", "Metastatic", and "Control" samples of **Skin Cutaneous Melanoma (SKCM)**. SKCM is the only TCGA tumor group with sufficient "Metastatic" sample size (N=366) to get statistical significance of differential expression. Besides, median expression values, sample sizes for each group, and statistical significance of differential expression between sample groups are reported in table format.')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 scale_options = ['TPM','log2(TPM+1)']
