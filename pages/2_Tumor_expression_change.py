@@ -62,9 +62,7 @@ add_logo('logo_v2.png')
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Gene expression change across tumors')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
-st.write(
-    'This tool can be used to identify overexpressed or underexpressed genes in your chosen tumor by inputting the desired fold change ("Primary tumor" compared to "Control" samples). An interactive volcano plot will be shown where the y-axis represent the -log10(p-value), while the x-axis is the log2(fold change). Genes meeting the specified criteria and with an adjusted p-value < 0.05 are highlighted and shown in a table. Tumoral overexpressed genes (with a fold change higher than one) can be used to identify antigens associated with the indicated tumor. The greater the fold change the more associated to the tumor the shown genes will be. You can also identify genes that are underexpressed in tumor samples compared to control ones in case you are looking for candidate genes to design a NOT-gate CAR.'
-)
+st.write('This tool can be used to explore fold change expression values ("Primary tumor" compared to "Control" samples) for a gene or gene set of interest in the desired tumors. This will provide a table with the fold cahnge value for each indicated gene in each selected tumor. This will allow to get preliminary information for candidate target genes to check if they are overexpressed in certain tumor and if it can be used to treat more than one tumor.')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 tumor_options  = ['ACC','BLCA','BRCA','CESC','CHOL','COAD','DLBC','ESCA','GBM','HNSC','KICH','KIRC','KIRP','LAML','LGG','LIHC','LUAD','LUSC','OV','PAAD','PCPG','PRAD','READ','SARC','SKCM','STAD','TGCT','THCA','THYM','UCEC','UCS']
