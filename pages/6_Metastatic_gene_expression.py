@@ -198,9 +198,11 @@ if st.button(f'Create {plot}'):
         with open('Data/SKCM.pkl', 'rb') as archivo:
             SKCM = pickle.load(archivo)
         # Get requested information
-        groups = [] # Gruops of tumor (Metastatic, Primary or Control)
+        groups = [] # Gruops of tumor (Metastatic, Primary or Normal)
         values = [] # Expression values
         for group in SKCM[gene]['SKCM'].keys():
+            if group == 'Normal':
+                group = 'Control'
             for value in SKCM[gene]['SKCM'][group]:
                 groups.append(group)
                 if scale == 'log2(TPM+1)':
