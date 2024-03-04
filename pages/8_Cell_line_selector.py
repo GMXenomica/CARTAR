@@ -62,9 +62,8 @@ add_logo('logo_v2.png')
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Cancer cell line selector')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
-st.write(
-    'This tool facilitates the identification of cancer cell lines from the Cancer Cell Line Encyclopedia (CCLE) expressing the indicated gene above or below the indicated threshold. You can specify the cancer cell line lineage of interest, but if none is specified it will provide information anout all lineages. The expression data for cancer cell lines is sourced from [DepMap Public 23Q4 Primary Files](https://depmap.org/portal/download/all/). The tool generates an interactive barplot illustrating the gene\'s expression in those cell lines by lineage, meeting the established threshold, accompanied by a table containing pertinent data for all relevant cell lines.'
-)
+st.write('This tool can be used to identify cancer cell lines for testing selected candidate targets. An interactive barplot displays cell lines meeting specified target expression criteria, with median expression and additional information provided in table format. This tool utilizes expression values from the Cancer Cell Line Encyclopedia (CCLE) ([OmicsExpressionProteinCodingGenesTPMLogp1.csv](https://depmap.org/portal/download/all/?release=DepMap+Public+23Q4&file=OmicsExpressionProteinCodingGenesTPMLogp1.csv#:~:text=DepMap%20Public%2023Q4-,OmicsExpressionProteinCodingGenesTPMLogp1.csv,-Gene%20expression%20TPM)).')
+st.markdown('Cancer cell lines to test the cytotoxic activity of a CAR therapy targeted against a candidate gene can be selected looking for the cell lines of the tumoral lineage of interest with high expression of the target gene. On the other hand, control cell lines can be selected by looking for those with low expression of the target gene.')   
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 tissue_options = ['Adrenal Gland','Ampulla of Vater','Biliary Tract','Bladder/Urinary Tract','Bone','Bowel','Breast','CNS/Brain','Cervix','Esophagus/Stomach','Eye','Fibroblast','Head and Neck','Kidney','Liver','Lung','Lymphoid','Myeloid','Ovary/Fallopian Tube','Pancreas','Peripheral Nervous System','Pleura','Prostate','Skin','Soft Tissue','Testis','Thyroid','Uterus','Vulva/Vagina', 'Other']
