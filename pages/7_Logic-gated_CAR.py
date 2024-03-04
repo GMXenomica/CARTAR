@@ -169,7 +169,7 @@ if st.button(f'Show correlation'):
                 gtex2 = 'Data/gtex_UZ.pkl'
                 tcga2 = 'Data/tcga_UZ.pkl'
             # Create the dicitionary with all the data
-            groups = [] # Groups of tumor (Primary or Control)
+            groups = [] # Groups of tumor (Primary or Normal)
             values1 = [] # Gene1 expression values 
             values2 = [] # Gene2 expression values 
             #If both genes in same file get the desired data
@@ -178,7 +178,10 @@ if st.button(f'Show correlation'):
                     tcga = pickle.load(archivo)
                 for group in tcga[gene1][tumor].keys():
                     for value in tcga[gene1][tumor][group]:
-                        groups.append(group)
+                        if group == 'Normal':
+                            groups.append('Control')
+                        else:
+                            groups.append(group)
                         if scale == 'log2(TPM+1)':
                             value = log2(value+1)
                         values1.append(value)
