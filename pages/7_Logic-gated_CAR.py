@@ -120,6 +120,7 @@ if selection == 'TPM':
     scale = 'TPM'
 elif selection == 'log2(TPM+1)':
     scale = 'log2(TPM+1)'
+st.info('TPM = Transcript Per Million')
 
 # Dictionary with the tumor:GTEx healthy tissue correspondance
 gtex_tcga = {'ACC':'Adrenal Gland','BLCA':'Bladder','BRCA':'Breast','CESC':'Cervix Uteri', 'COAD':'Colon', 'DLBC':'Blood',
