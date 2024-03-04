@@ -94,6 +94,7 @@ if not tumors:
     st.info('If no cancer cell lineage is selected, all lineages will be displayed')
 expression =  st.radio('Select underexpression or overexpression', expression_options)# Introduce under to look for cell with expression values below the threshold or over for expression values aboce the threshold
 scale =  st.radio('Select scale', scale_options) # Introduce scale 
+st.info('TPM = Transcript Per Million')
 value =  st.text_input('Select threshold expression value:') # Introduce threshold value
 if value:
     if ',' in value:
