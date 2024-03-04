@@ -74,10 +74,16 @@ plot_options = ['Boxplot','Violin plot','Dot plot']
 gene = st.text_input('Enter gene symbol').upper()
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
+exclude = open('Data/no_membrane_genes.csv','r')
+for line in exclude:
+    no_membrane = line.split(',')
 if gene == '':
-    st.error('Introduce gene symbol. You can try FGFR1')
+    st.error('Introduce gene symbol. You can try CEACAM6')
 elif gene != '' and gene not in data['gene'].values:
-    st.error(f'{gene} gene symbol not found')
+    if gene in no_membrane:
+        st.error(f'The protein encoded by {gene} is not located at the membrane')
+    else:
+        st.error(f'{gene} gene symbol not found')
 selection = st.radio('Select plot', plot_options)
 if selection == 'Boxplot':
     plot = 'Boxplot'
