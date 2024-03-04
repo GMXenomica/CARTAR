@@ -116,7 +116,7 @@ elif selection == 'Violin plot':
 elif selection == 'Dot plot':
     plot = 'Dot plot'
 selection2 = st.radio('Select scale', scale_options)
-st.info('log2(TPM+1) scale is recommended for better visualization due to outliers')
+st.info('TPM = Transcript Per Million')
 if selection2 == 'TPM':
     scale = 'TPM'
 elif selection2 == 'log2(TPM+1)':
