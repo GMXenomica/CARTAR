@@ -67,9 +67,7 @@ add_logo('logo_v2.png')
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Gene expression across GTEx tissues')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
-st.write(
-    'This tool will generate the indicated plot comparing expression values of the chosen gene in the selected scale of the indicated tumor (data obtained from TCGA project) to GTEx tissue samples and a table with all relevant data. If no tumor is indicated it will report the expression data of the indicated gene in all GTEx tissues.'
-)
+st.write('This tool can be used to create boxplots, violin plots, or dot plots for the expression values of a gene of interest across all GTEx tissues. When a tumor group is specified, the expression values of "Primary tumor" samples are included in the plot and compared to the expression values in each GTEx tissue. Besides, median expression values, sample sizes of each group, and statistical significance of differential expression when a tumor is introduce are reported in table format. This is critical to assess the specificity of candidate target genes. The CAR therapy will reacognise the target antigen in all expressing cells and it is important to ensure that no vital tissue cells are destroyed.')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 tumor_options  = ['ACC','BLCA','BRCA','CESC','CHOL','COAD','DLBC','ESCA','GBM','HNSC','KICH','KIRC','KIRP','LAML','LGG','LIHC','LUAD','LUSC','OV','PAAD','PCPG','PRAD','READ','SARC','SKCM','STAD','TGCT','THCA','THYM','UCEC','UCS']
