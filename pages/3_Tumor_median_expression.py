@@ -96,7 +96,7 @@ if gene == '':
     st.error('Introduce gene symbol. You can try CEACAM6')
 elif gene != '' and gene not in data['gene'].values:
     if gene in no_membrane:
-        st.error(f' The protein encoded bty {gene} is not located at the membrane')
+        st.error(f' The protein encoded by {gene} is not located at the membrane')
     else:
         st.error(f'{gene} gene symbol not found')
 tumors = st.multiselect('Select tumors (optional)', tumor_options)
