@@ -94,6 +94,7 @@ if selection2 == 'TPM':
     scale = 'TPM'
 elif selection2 == 'log2(TPM+1)':
     scale = 'log2(TPM+1)'
+st.info('TPM = Transcript Per Million')
 
 # Calculate statistical significance and customize plot function
 def plot_significance(tumor,y,bottom,top):
