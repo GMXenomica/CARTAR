@@ -169,7 +169,7 @@ if st.button(f'Show correlation'):
                 gtex2 = 'Data/gtex_UZ.pkl'
                 tcga2 = 'Data/tcga_UZ.pkl'
             # Create the dicitionary with all the data
-            groups = [] # Groups of tumor (Primary or Normal)
+            groups = [] # Groups of tumor (Primary or Control)
             values1 = [] # Gene1 expression values 
             values2 = [] # Gene2 expression values 
             #If both genes in same file get the desired data
@@ -191,7 +191,7 @@ if st.button(f'Show correlation'):
                     with open(gtex1, 'rb') as archivo:
                         gtex = pickle.load(archivo)
                     for value in gtex[gene1][gtex_tcga[tumor]]:
-                        groups.append('Normal')
+                        groups.append('Control')
                         if scale == 'log2(TPM+1)':
                             value = log2(value+1)
                         values1.append(value)   
@@ -220,7 +220,7 @@ if st.button(f'Show correlation'):
                     with open(gtex1, 'rb') as archivo:
                         gtex1 = pickle.load(archivo)
                     for value in gtex1[gene1][gtex_tcga[tumor]]:
-                        groups.append('Normal')
+                        groups.append('Control')
                         if scale == 'log2(TPM+1)':
                             value = log2(value+1)
                         values1.append(value)  
@@ -255,7 +255,7 @@ if st.button(f'Show correlation'):
             st.header('Correlation plot', divider='rainbow')
             st.plotly_chart(fig,use_container_width=True)
             st.write(
-                f'The presented figure illustrates the expression correlation between {gene1} and {gene2} in {scale} within the {tumor}, showcasing the comparison of expression levels between "Primary Tumor" and "Normal" samples.'
+                f'The presented figure illustrates the expression correlation between {gene1} and {gene2} in {scale} within the {tumor}, showcasing the comparison of expression levels between "Primary Tumor" and "Control" samples.'
             )
             st.header('Data table', divider='rainbow')
             st.write(
