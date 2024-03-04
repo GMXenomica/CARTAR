@@ -70,18 +70,25 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 tissue_options = ['Adrenal Gland','Ampulla of Vater','Biliary Tract','Bladder/Urinary Tract','Bone','Bowel','Breast','CNS/Brain','Cervix','Esophagus/Stomach','Eye','Fibroblast','Head and Neck','Kidney','Liver','Lung','Lymphoid','Myeloid','Ovary/Fallopian Tube','Pancreas','Peripheral Nervous System','Pleura','Prostate','Skin','Soft Tissue','Testis','Thyroid','Uterus','Vulva/Vagina', 'Other']
 expression_options = ['Overexpression', 'Underexpression']
 scale_options = ['TPM','log2(TPM+1)']
+# Identify if indicated gene is present in the data
 data = open('Data/genes_cells.csv','r')
 data_list = []
 for line in data:
     data_list.extend(line.split(','))
 gene = st.text_input('Select gene').upper()  # Introduce gene
+exclude = open('Data/no_membrane_genes.csv','r')
+for line in exclude:
+    no_membrane = line.split(',')
 if gene == '':
     st.error('Introduce gene. You can try CEACAM6')
 if 'MORF' not in gene:
     if 'ORF' in gene:
         gene = gene.replace('ORF','orf')
 if gene != '' and gene not in data_list:
-    st.error(f'{gene} gene not found')
+    if gene in no_membrane:
+        st.error(f'The protein encoded by {gene} is not located at the membrane')
+    else:
+        st.error(f'{gene} gene not found')
 tumors = st.multiselect('Select cancer cell line lineage (optional)', tissue_options) # Introduce tumor tissues or none if you want all tumors
 if not tumors:
     #tumors = tissue_options
