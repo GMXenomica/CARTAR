@@ -208,7 +208,10 @@ if st.button(f'Show correlation'):
                     tcga1 = pickle.load(archivo)
                 for group in tcga1[gene1][tumor].keys():
                     for value in tcga1[gene1][tumor][group]:
-                        groups.append(group)
+                        if group == 'Normal':
+                            groups.append('Control')
+                        else:
+                            groups.append(group)
                         if scale == 'log2(TPM+1)':
                             value = log2(value+1)
                         values1.append(value)
