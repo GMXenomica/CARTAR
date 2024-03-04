@@ -67,8 +67,7 @@ add_logo('logo_v2.png')
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Gene correlation for logic gating CAR')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
-st.write(
-    'This tool facilitates exploring the expression correlation between the two specified genes across all samples within the chosen tumor (data sourced from the TCGA project) and its corresponding controls (data obtained from both the TCGA project and GTEx tissues).This can be helpful for the design of CAR logic gating strategies.')
+st.write('This tool can be used to explore the correlation between two genes expression values in "Primary tumor" and "Control" samples of a specified tumor to assess the potential of their combination for a logic-gated CAR therapy (OR-gate, AND-gate, NOT-gate, or IF-BETTER-gate).')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 tumor_options  = ['ACC','BLCA','BRCA','CESC','CHOL','COAD','DLBC','ESCA','GBM','HNSC','KICH','KIRC','KIRP','LAML','LGG','LIHC','LUAD','LUSC','OV','PAAD','PCPG','PRAD','READ','SARC','SKCM','STAD','TGCT','THCA','THYM','UCEC','UCS']
