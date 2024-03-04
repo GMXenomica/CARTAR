@@ -123,11 +123,11 @@ if st.button('Create barplot'):
         categories = sorted(categories) # Sort tumor named alphabetically
         metastatic = [] # List with median values of metastatic sample groups (NA if not available)
         primary = [] # List with median values of primary tumor sample groups
-        normal = [] # List with median values of normal sample groups
+        control = [] # List with median values of control sample groups
         data = open('Data/targetable_gene_Tpm_TumorVsControl_final.csv','r') # Read expression data for the samples
         m_indexes = [] # List with indexes of metastatic sample groups
         p_indexes = [] # List with indexes values of primary tumor sample groups
-        n_indexes = [] # List with indexes values of normal sample groups
+        n_indexes = [] # List with indexes values of control sample groups
         firstline = 1
         for line in data:
             fields = line.split(',')
@@ -161,7 +161,7 @@ if st.button('Create barplot'):
                             primary.append(log2(float(fields[index])+1))
                             t_data['Primary tumor median'].append(log2(float(fields[index])+1))
                         for index in n_indexes: 
-                            normal.append(log2(float(fields[index])+1))
+                            control.append(log2(float(fields[index])+1))
                             t_data['Control median'].append(log2(float(fields[index])+1))
                     else:
                         for index in m_indexes:
@@ -175,9 +175,9 @@ if st.button('Create barplot'):
                             primary.append(float(fields[index]))
                             t_data['Primary tumor median'].append(float(fields[index]))
                         for index in n_indexes: 
-                            normal.append(float(fields[index]))    
+                            control.append(float(fields[index]))    
                             t_data['Control median'].append(float(fields[index]))
-        classes = ['Metastatic', 'Primary', 'Normal']
+        classes = ['Metastatic', 'Primary', 'Control']
         values = [None]*len(categories)
         for i in range(len(categories)):
             for k in range(len(classes)):
@@ -186,7 +186,7 @@ if st.button('Create barplot'):
                 elif k == 1:
                     values[i].append(primary[i])
                 elif k == 2:
-                    values[i].append(normal[i])
+                    values[i].append(control[i])
         # Create table with the results
         table_data = pd.DataFrame(t_data)
         # Creation of the dictionary containing all needed information for the pltypeot
