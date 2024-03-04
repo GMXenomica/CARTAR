@@ -118,7 +118,7 @@ if selection == 'FC':
     scale = 'FC'
 elif selection == 'log2(FC)':
     scale = 'log2(FC)'
-st.info('FC = foldchange')
+st.info('FC = Fold Change')
 
 if st.button('Show Fold Change'):
     # If there is at least one valid gene
