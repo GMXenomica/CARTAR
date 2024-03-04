@@ -89,8 +89,7 @@ abbreviations = {'ACC':'Adrenocortical carcinoma','BLCA':'Bladder Urothelial Car
 gene = st.text_input('Enter gene symbol').upper()
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
-no_membrane = open('Data/no_membrane_genes.csv','r')
-no_membrane = no_membrane.split(',')
+no_membrane = open('Data/no_membrane_genes.csv','r').split(',')
 if gene == '':
     st.error('Introduce gene symbol. You can try CEACAM6')
 elif gene != '' and gene not in data['gene'].values:
