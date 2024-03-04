@@ -125,7 +125,7 @@ st.info('TPM = Transcript Per Million')
 # Generate the data for the plot function
 def plot_data(data):
     df = pd.DataFrame(data)
-    group_order = ['Tumor', 'Normal']
+    group_order = ['Tumor', 'Control']
     df['Sample'] = pd.Categorical(df['Sample'], categories=group_order, ordered=True)
     df = df.sort_values(by=['Tumor', 'Sample'])
     return(df)
@@ -216,7 +216,7 @@ def plot_significance(tumors,y):
     st.header(plot, divider='rainbow')
     st.pyplot()
     st.write(
-        f'The above figure displays the {plot} for {gene} expression in {scale} across selected tumors, comparing the expression between "Primary tumor" and "Normal" samples. Statistical significance is indicated on top, between each specified tumor and its corresponding control (***: p_value < 0.001, **: p_value < 0.01, *: p_value < 0.05). The plot highlights significant overexpression in :red[red] when the gene is overexpressed in "Primary tumor" samples compared to "Normal" samples, and in :green[green] when it is underexpressed."'
+        f'The above figure displays the {plot} for {gene} expression in {scale} across selected tumors, comparing the expression between "Primary tumor" and "Control" samples. Statistical significance is indicated on top, between each specified tumor and its corresponding control (***: p_value < 0.001, **: p_value < 0.01, *: p_value < 0.05). The plot highlights significant overexpression in :red[red] when the gene is overexpressed in "Primary tumor" samples compared to "Control" samples, and in :green[green] when it is underexpressed."'
     )
     st.header('Data table', divider='rainbow')
     st.write(
@@ -260,7 +260,10 @@ if st.button(f'Create {plot}'):
                 for group in tcga[gene][tumor].keys():
                     for value in tcga[gene][tumor][group]:
                         categories.append(tumor)
-                        groups.append(group)
+                        if group == 'Normal':
+                            groups.append('Control')
+                        else:
+                            groups.append(group)
                         if scale == 'log2(TPM+1)':
                             value = log2(value+1)
                         values.append(value)
@@ -284,7 +287,7 @@ if st.button(f'Create {plot}'):
                         with open(data, 'rb') as archivo:
                             gtex = pickle.load(archivo)
                         x = 0
-                    group = 'Normal'
+                    group = 'Control'
                     for value in gtex[gene][gtex_tcga[tumor]]:
                         categories.append(tumor)
                         groups.append(group)
@@ -297,7 +300,7 @@ if st.button(f'Create {plot}'):
                 df = plot_data(data)
                 plt.figure()
                 sns.set(style='whitegrid')
-                sns.boxplot(x='Tumor', y='Values', hue='Sample', data=df, palette={'Tumor': 'lightseagreen', 'Normal': 'tan'}, flierprops={'marker': '.'},whis=(10, 90),showfliers=False)
+                sns.boxplot(x='Tumor', y='Values', hue='Sample', data=df, palette={'Tumor': 'lightseagreen', 'Control': 'tan'}, flierprops={'marker': '.'},whis=(10, 90),showfliers=False)
                 xmin, xmax, ymin, ymax = plt.axis()
                 # Calculate statistical significance and customize the plot
                 plot_significance(tumors,1)
@@ -305,7 +308,7 @@ if st.button(f'Create {plot}'):
             if plot == 'Violin plot':
                 df = plot_data(data)
                 plt.figure()
-                sns.violinplot(x='Tumor', y='Values', hue='Sample', data=df, split=True, inner='quartile', density_norm='width',palette={'Tumor': 'lightseagreen', 'Normal': 'tan', 'Metastatic':'grey'})
+                sns.violinplot(x='Tumor', y='Values', hue='Sample', data=df, split=True, inner='quartile', density_norm='width',palette={'Tumor': 'lightseagreen', 'Control': 'tan', 'Metastatic':'grey'})
                 xmin, xmax, ymin, ymax = plt.axis()
                 # Calculate statistical significance and customize plot
                 plot_significance(tumors,0)         
@@ -314,7 +317,7 @@ if st.button(f'Create {plot}'):
                 data = {'Tumor': categories, 'Sample':groups, 'Values':values}
                 df = plot_data(data)
                 plt.figure()
-                sns.stripplot(x='Tumor', y='Values', jitter=True, hue='Sample', data=data, size=4, palette={'Tumor': 'lightseagreen', 'Normal': 'tan', 'Metastatic':'grey'})
+                sns.stripplot(x='Tumor', y='Values', jitter=True, hue='Sample', data=data, size=4, palette={'Tumor': 'lightseagreen', 'Control': 'tan', 'Metastatic':'grey'})
                 xmin, xmax, ymin, ymax = plt.axis()
                 # Calculate statistical significance and customize the plot
                 plot_significance(tumors,0)   
