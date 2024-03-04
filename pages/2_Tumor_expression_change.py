@@ -85,6 +85,9 @@ abbreviations = {'ACC':'Adrenocortical carcinoma','BLCA':'Bladder Urothelial Car
 genes = st.text_input('Enter gene symbols of interest (separated by commas or spaces):').upper().strip(' ')
 correct_genes = []
 # Identify if indicated gene is present in the data
+exclude = open('Data/no_membrane_genes.csv','r')
+for line in exclude:
+    no_membrane = line.split(',')
 data = pd.read_csv('Data/log2FC_expression.csv')
 if ' ' in genes and ',' not in genes:
     genes = genes.replace(' ',',')
@@ -98,7 +101,10 @@ else:
         if gene == '':
             pass
         elif gene not in data['gene'].values:
-            st.error(f'{gene} gene symbol not found')
+            if gene in no_membrane:
+                st.error(f'The protein encoded by {gene} is not located at the membrane')
+            else:
+                st.error(f'{gene} gene symbol not found')
         else:
             correct_genes.append(gene)
 tumors = st.multiselect('Select tumors (optional)', tumor_options)
