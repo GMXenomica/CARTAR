@@ -68,6 +68,10 @@ st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Gene correlation for logic gating CAR')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 st.write('This tool can be used to explore the correlation between two genes expression values in "Primary tumor" and "Control" samples of a specified tumor to assess the potential of their combination for a logic-gated CAR therapy (OR-gate, AND-gate, NOT-gate, or IF-BETTER-gate).')
+st.markdown('- **OR-gate:** effector cell activation upon binding to either one of two antigens. This strategy can be used when either one of the antigens is highly expressed in "Primary tumor" samples, while their expression is low in "Control" samples.')
+st.markdown('- **AND-gate:** effector cell activation upon binding to both antigens simultaneously. This strategy can be used when both antigens are expressed in "Primary tumor" samples, while none or only one of the antigens is expressed in "Control" samples.')
+st.markdown('- **NOT-gate:** effector cell activation upon binding to one antigen while the second antigen is not recognised. This strategy can be used when the antigen triggering the cytotoxic activity is present is certain healthy tissues and you wnat to increase selectivity by including an antigen thar respress this activity and is only expressed in the healthy tissues. To identify this antigens you must go to **Tissue gene expression tool**.')
+st.markdown('- **IF-BETTER-gate:** effector cell activation upon binding to high CAR target expression. Activation is not triggered upon binding to low CAR targer expression, unless the second antigen is present.')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 tumor_options  = ['ACC','BLCA','BRCA','CESC','CHOL','COAD','DLBC','ESCA','GBM','HNSC','KICH','KIRC','KIRP','LAML','LGG','LIHC','LUAD','LUSC','OV','PAAD','PCPG','PRAD','READ','SARC','SKCM','STAD','TGCT','THCA','THYM','UCEC','UCS']
