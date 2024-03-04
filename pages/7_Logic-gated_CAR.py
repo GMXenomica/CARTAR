@@ -89,15 +89,24 @@ abbreviations = {'ACC':'Adrenocortical carcinoma','BLCA':'Bladder Urothelial Car
 gene1 = st.text_input('Enter first gene symbol').upper()
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
+exclude = open('Data/no_membrane_genes.csv','r')
+for line in exclude:
+    no_membrane = line.split(',')
 if gene1 == '':
     st.error('Introduce gene symbol. You can try CEACAM6')
 elif gene1 != '' and gene1 not in data['gene'].values:
-    st.error(f'{gene1} gene symbol not found')
+    if gene1 in no_membrane:
+        st.error(f'The protein encoded by {gene1} is not located at the membrane')
+    else:
+        st.error(f'{gene1} gene symbol not found')
 gene2 = st.text_input('Enter second gene symbol').upper()
 if gene2 == '':
     st.error('Introduce gene symbol. You can try DPEP1')
 elif gene2 != '' and gene2 not in data['gene'].values:
-    st.error(f'{gene2} gene symbol not found')
+    if gene2 in no_membrane:
+        st.error(f'The protein encoded by {gene2} is not located at the membrane')
+    else:
+        st.error(f'{gene2} gene symbol not found')
 tumor = st.selectbox('Choose tumor', tumor_options)
 # Expander to show abbreviation meaning
 with st.expander('Extension of tumor abbreviations\' meaning'):
