@@ -104,7 +104,7 @@ if FC and FC.replace('.', '').isdigit():
 limit =st.radio('Select whether you are interested in genes above or below the specified threshold.', limit_options)
 
 if FC.replace('.', '').isdigit() == False or FC == '':
-    st.button('Show tumor-associated genes'):
+    st.button('Show tumor-associated genes')
     
 if st.button('Show tumor-associated genes'):
     if FC.replace('.', '').isdigit() and FC != '':
