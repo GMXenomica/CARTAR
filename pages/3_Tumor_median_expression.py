@@ -66,7 +66,7 @@ add_logo('logo_v2.png')
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Gene median expression across tumors')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
-st.write('This tool can be used to easily visualize a barplot showcasing the median expression value of a selected gene across primary tumor, metastatic (if available), and control samples across tumors of interest. Besides, median expression values and sample size of each group are reported in table format. This will allow to get information about a candidate target gene identified with the **Tumor-associated antigens tool** to check its expression in "Metastatic" samples if available and whether it can be used to treat more than one tumor.')
+st.write('This tool can be used to easily visualize a barplot showcasing the median expression value of a selected gene across primary tumor, metastatic (if available), and control samples across tumors of interest. Besides, median expression values and sample size of each group are reported in table format. This will allow to get information about a candidate target gene identified with the **Tumor-associated antigens tool** to check its expression in all sample groups and whether it can be used to treat more than one tumor.')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 tumor_options  = ['ACC','BLCA','BRCA','CESC','CHOL','COAD','DLBC','ESCA','GBM','HNSC','KICH','KIRC','KIRP','LAML','LGG','LIHC','LUAD','LUSC','OV','PAAD','PCPG','PRAD','READ','SARC','SKCM','STAD','TGCT','THCA','THYM','UCEC','UCS']
