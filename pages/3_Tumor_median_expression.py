@@ -221,7 +221,7 @@ if st.button('Create barplot'):
         st.write(
             'This table can be downloaded in CSV format.'
         ) 
+    elif gene == '':
+        st.error('No gene symbol was introduced')
     elif gene not in data['gene'].values:
-        st.error(f'{gene} gene symbol not found')
-    else:
-        st.error('No gene symbol was introduced')  
+        st.error(f'{gene} gene symbol not found')  
