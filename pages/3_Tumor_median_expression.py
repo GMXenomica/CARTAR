@@ -211,7 +211,7 @@ if st.button('Create barplot'):
         st.header('Interactive barplot', divider='rainbow')
         st.plotly_chart(fig,use_container_width=True)
         st.write(
-            f'"The interactive barplot above illustrates the expression of {gene} in {scale} across "Metastatic," "Primary tumor," and "Control" samples from selected tumors. The visualization allows for a comparison of expression between these sample groups. Note that no statistical significance is indicated here. For information on the statistical significance between "Primary tumor" and "Control" samples, please refer to [**Tumor gene expression tool**](https://cartar-car-targets.streamlit.app/Tumor_gene_expression).'
+            f'The interactive barplot above illustrates the expression of {gene} in {scale} across "Metastatic," "Primary tumor," and "Control" samples from selected tumors. The visualization allows for a comparison of expression between these sample groups. Note that no statistical significance is indicated here. For information on the statistical significance between "Primary tumor" and "Control" samples, please refer to [**Tumor gene expression tool**](https://cartar-car-targets.streamlit.app/Tumor_gene_expression).'
         )
         st.header('Data table', divider='rainbow')
         st.write(
