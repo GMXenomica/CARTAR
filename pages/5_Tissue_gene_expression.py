@@ -326,7 +326,7 @@ if st.button(f'Create {plot}'):
                 )
             # Statistical analysis of significance of tumoral group vs gtex data
             statistics(0)
+    elif gene == '':
+        st.error('No gene symbol was introduced')  
     elif gene not in data['gene'].values:
         st.error(f'{gene} gene symbol not found')
-    else:
-        st.error('No gene symbol was introduced')   
