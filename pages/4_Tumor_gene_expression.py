@@ -321,7 +321,7 @@ if st.button(f'Create {plot}'):
                 xmin, xmax, ymin, ymax = plt.axis()
                 # Calculate statistical significance and customize the plot
                 plot_significance(tumors,0)   
+    elif gene == '':
+        st.error('No gene symbol was introduced')  
     elif gene not in data['gene'].values:
         st.error(f'{gene} gene symbol not found')
-    else:
-        st.error('No gene symbol was introduced')  
