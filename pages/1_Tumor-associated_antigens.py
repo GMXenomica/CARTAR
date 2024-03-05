@@ -102,12 +102,9 @@ if FC and FC.replace('.', '').isdigit():
     else:
         FC_f = float(FC)
 limit =st.radio('Select whether you are interested in genes above or below the specified threshold.', limit_options)
-
-if FC.replace('.', '').isdigit() == False or FC == '':
-    st.button('Razona')
     
-elif FC.replace('.', '').isdigit() and FC != '':
-    if st.button('Show tumor-associated genes'):
+if st.button('Show tumor-associated genes'):
+    elif FC.replace('.', '').isdigit() and FC != '':
         # Identify genes meeting the stablished threshold
         log2FC = math.log2(FC_f)
         data = pd.read_csv('Data/log2FC_expression.csv')
