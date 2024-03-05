@@ -245,8 +245,8 @@ if st.button(f'Create {plot}'):
                     [median, median], lw=1, c='k', zorder=10000
                 )
             # Statistical significant differences and customize the plot
-            plot_significance('SKCM',1,ymin,ymax)        
+            plot_significance('SKCM',1,ymin,ymax) 
+    elif gene == '':
+        st.error('No gene symbol was introduced')  
     elif gene not in data['gene'].values:
-        st.error(f'{gene} gene symbol not found')
-    else:
-        st.error('No gene symbol was introduced')        
+        st.error(f'{gene} gene symbol not found')       
