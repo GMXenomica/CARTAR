@@ -203,5 +203,7 @@ if st.button('Show tumor-associated genes'):
             )  
     elif FC == '':
         st.error('No FC was introduced') 
+    elif FC[0] == '-':
+        st.error('FC must be a positive number') 
     else: 
         st.error('Introduce a numerical FC') 
