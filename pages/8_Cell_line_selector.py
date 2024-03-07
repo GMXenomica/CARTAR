@@ -105,6 +105,8 @@ if value:
             threshold = log2(value_d+1)
         else:
             threshold = value_d
+    elif value[0] == '-':
+        st.error('Threshold expression value must be a positive number')
     else:
         st.error('Introduce a numerical threshold')
 
