@@ -1,4 +1,4 @@
-The respository contains all the code and files used to bild the CARTAR webserver, designed to assist scientist in the _in silico_ identification and validation of immunotherapetic targets present in the cell surface to attack tumoral cells. This toool is mainly designed for the identification of Chimeric Antigen Receptor (CAR) targets. The CARTAR web page is accessible via https://GMXenomica.github.io/CARTAR/.
+The respository contains all the code and files used to bild the CARTAR webserver, designed to assist scientist in the _in silico_ identification and validation of immunotherapetic targets present in the cell surface to attack tumoral cells. This toool is mainly designed for the identification of Chimeric Antigen Receptor (CAR) targets. The CARTAR web page is accessible via https://gmxenomica.github.io/CARTAR/.
 
 **Files**
 - Help.py: python code that builds the CARTAR tool and where all the available tools are explained
