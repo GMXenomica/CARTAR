@@ -66,7 +66,7 @@ st.write('This tool can be used to identify cancer cell lines for testing select
 st.markdown('Cancer cell lines to test the cytotoxic activity of a CAR therapy targeted against a candidate gene can be selected looking for the cell lines of the tumoral lineage of interest with high expression of the target gene. On the other hand, control cell lines can be selected by looking for those with low expression of the target gene.')   
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-tissue_options = ['Adrenal Gland','Ampulla of Vater','Biliary Tract','Bladder/Urinary Tract','Bone','Bowel','Breast','CNS/Brain','Cervix','Esophagus/Stomach','Eye','Fibroblast','Head and Neck','Kidney','Liver','Lung','Lymphoid','Myeloid','Ovary/Fallopian Tube','Pancreas','Peripheral Nervous System','Pleura','Prostate','Skin','Soft Tissue','Testis','Thyroid','Uterus','Vulva/Vagina', 'Other']
+tissue_options = ['Adrenal Gland','Ampulla of Vater','Biliary Tract','Bladder/Urinary Tract','Bone','Bowel','Breast','CNS/Brain','Cervix','Esophagus/Stomach','Eye','Fibroblast','Head and Neck','Kidney','Liver','Lung','Lymphoid','Myeloid','Ovary/Fallopian Tube','Pancreas','Peripheral Nervous System','Pleura','Prostate','Skin','Soft Tissue','Testis','Thyroid','Uterus','Vulva/Vagina']
 expression_options = ['Overexpression', 'Underexpression']
 scale_options = ['TPM','log2(TPM+1)']
 # Identify if indicated gene is present in the data
