@@ -86,7 +86,7 @@ data = open('Data/genes_cells.csv','r')
 data_list = []
 for line in data:
     data_list.extend(line.split(','))
-gene = st.text_input('Select gene').upper()  # Introduce gene
+gene = st.text_input('Select gene').upper().strip(' ')  # Introduce gene
 exclude = open('Data/no_membrane_genes.csv','r')
 for line in exclude:
     no_membrane = line.split(',')
