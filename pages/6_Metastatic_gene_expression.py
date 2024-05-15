@@ -81,7 +81,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 scale_options = ['TPM','log2(TPM+1)']
 plot_options = ['Boxplot','Violin plot','Dot plot']
-gene = st.text_input('Enter gene symbol').upper()
+gene = st.text_input('Enter gene symbol').upper().strip(' ')
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
 exclude = open('Data/no_membrane_genes.csv','r')
