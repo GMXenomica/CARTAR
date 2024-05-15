@@ -101,7 +101,7 @@ abbreviations = {'ACC':'Adrenocortical carcinoma','BLCA':'Bladder Urothelial Car
                  'TGCT':'Testicular Germ Cell Tumors','THCA':'Thyroid carcinoma','THYM':'Thymoma',
                  'UCEC':'Uterine Corpus Endometrial Carcinoma','UCS':'Uterine Carcinosarcoma'}
 
-gene1 = st.text_input('Enter first gene symbol').upper()
+gene1 = st.text_input('Enter first gene symbol').upper().strip(' ')
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
 exclude = open('Data/no_membrane_genes.csv','r')
@@ -114,7 +114,7 @@ elif gene1 != '' and gene1 not in data['gene'].values:
         st.error(f'The protein encoded by {gene1} is not located at the membrane')
     else:
         st.error(f'{gene1} gene symbol not found')
-gene2 = st.text_input('Enter second gene symbol').upper()
+gene2 = st.text_input('Enter second gene symbol').upper().strip(' ')
 if gene2 == '':
     st.error('Introduce gene symbol. You can try DPEP1')
 elif gene2 != '' and gene2 not in data['gene'].values:
