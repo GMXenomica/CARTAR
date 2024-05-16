@@ -87,6 +87,9 @@ data_list = []
 for line in data:
     data_list.extend(line.split(','))
 gene = st.text_input('Select gene').upper().strip(' ')  # Introduce gene
+experimental_pm_file = open('Data/HPA_evidence_pm.csv','r')
+for line in experimental_pm_file:
+    experimental_pm_genes = line.split(',')
 exclude = open('Data/no_membrane_genes.csv','r')
 for line in exclude:
     no_membrane = line.split(',')
@@ -203,6 +206,10 @@ if st.button('Find cell lines'):
             st.write(
                 f'All relevant data for the selected cell lines is presented in the table below, encompassing lineage, primary diseases, and disease subtypes. You can click on the column names to arrange the genes based on that column either in ascending or descending order. Further details for each cell line can be viewed by clicking on the respective cell, revealing the values with all the decimals.'
             )
+            if gene in experimental_pm_genes:
+                st.write(
+                    f'**{gene} has been experimetally reported to be located in the plasma membrane.**'
+                )
             st.dataframe(table_data, hide_index=True)  
             table = table_data.to_csv(encoding='utf-8', index=False)
             b64 = base64.b64encode(table.encode()).decode()
