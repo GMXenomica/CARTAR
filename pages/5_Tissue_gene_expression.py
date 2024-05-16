@@ -100,6 +100,9 @@ abbreviations = {'ACC':'Adrenocortical carcinoma','BLCA':'Bladder Urothelial Car
                  'UCEC':'Uterine Corpus Endometrial Carcinoma','UCS':'Uterine Carcinosarcoma'}
 
 gene = st.text_input('Enter gene symbol').upper().strip(' ')
+experimental_pm_file = open('Data/HPA_evidence_pm.csv','r')
+for line in experimental_pm_file:
+    experimental_pm_genes = line.split(',')
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
 exclude = open('Data/no_membrane_genes.csv','r')
@@ -241,6 +244,10 @@ def statistics(y):
     else:
         st.write(
             f'The table below presents all relevant data, encompassing the log2(Fold Change) for each comparison. This calculation is derived from the median expression of {tumor} minus median expression of GTEx tissue, both based on log2(TPM+1). You can click in the column names to order the tissues according to that column from higher to lower or viceversa. Please note that **p-values under 0.001 are rounded to 0**; for the complete decimal value, click on the respective cell.'
+        )
+    if gene in experimental_pm_genes:
+        st.write(
+            f'**{gene} has been experimetally reported to be located in the plasma membrane.**'
         )
     st.dataframe(table_data, hide_index=True)
     table = table_data.to_csv(encoding='utf-8', index=False)
