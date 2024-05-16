@@ -355,7 +355,8 @@ with open('../Data/Processed/median.pkl', 'wb') as archivo:
     pickle.dump(result, archivo)   
 
 # Create dictionary with tumor median and p-values comparing 'Primary tumor' and 'Normal' samples
-
+firstline = 1
+result = {} # Ditionary with following structure {gene:{tumor:p_value}}
 # Identifiy the position of each tumor_group in the lines
 for line in data:
     fields = line.strip().split(',')
