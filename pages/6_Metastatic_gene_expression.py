@@ -82,6 +82,9 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 scale_options = ['TPM','log2(TPM+1)']
 plot_options = ['Boxplot','Violin plot','Dot plot']
 gene = st.text_input('Enter gene symbol').upper().strip(' ')
+experimental_pm_file = open('Data/HPA_evidence_pm.csv','r')
+for line in experimental_pm_file:
+    experimental_pm_genes = line.split(',')
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
 exclude = open('Data/no_membrane_genes.csv','r')
@@ -198,6 +201,10 @@ def plot_significance(tumor,y,bottom,top):
     st.write(
         f'All relevant information is presented in the table below, encompassing critical aspects such as the log2(Fold Change) for each comparison. Computed as the log2(TPM+1) median of SKCM Group 1 expression minus the log2(TPM+1) median of SKCM Group 2 expression. For ease of exploration, you can click on the column names to arrange the rows based on the selected column, either in ascending or descending order. Please note that **p-values under 0.001 are rounded to 0**; for the complete decimal value, click on the respective cell.'
     )
+    if gene in experimental_pm_genes:
+        st.write(
+            f'**{gene} has been experimetally reported to be located in the plasma membrane.**'
+        )
     st.dataframe(table_data, hide_index=True)
     table = table_data.to_csv(encoding='utf-8', index=False)
     b64 = base64.b64encode(table.encode()).decode()
