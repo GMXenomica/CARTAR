@@ -95,6 +95,9 @@ abbreviations = {'ACC':'Adrenocortical carcinoma','BLCA':'Bladder Urothelial Car
                  'READ':'Rectum adenocarcinoma','SARC':'Sarcoma','SKCM':'Skin Cutaneous Melanoma','STAD':'Stomach adenocarcinoma',
                  'TGCT':'Testicular Germ Cell Tumors','THCA':'Thyroid carcinoma','THYM':'Thymoma',
                  'UCEC':'Uterine Corpus Endometrial Carcinoma','UCS':'Uterine Carcinosarcoma'}
+experimental_pm_file = open('Data/HPA_evidence_pm.csv','r')
+for line in experimental_pm_file:
+    experimental_pm_genes = line.split(',')
 # List with expression options
 limit_options = ['Above', 'Below']
 # Select tumor
@@ -121,7 +124,7 @@ if st.button('Show tumor-associated genes'):
         log2FC = math.log2(FC_f)
         data = pd.read_csv('Data/log2FC_expression.csv')
         final = {'Gene': [], 'log2(FC)': [], 'FC': [], f'{tumor} median': [], f'{tumor} sample size': [],
-                'Control median': [], 'Control sample size': [], 'Significance': [], 'p_value': [], 'p_adjusted': []}
+                'Control median': [], 'Control sample size': [], 'Significance': [], 'p_value': [], 'p_adjusted': [], 'HPA membrane location': []}
         figure = {'Gene': [], 'log2(FC)': [], 'adjusted_p_value': [], 'Legend': []}
         selected_genes = []
         for index, row in data.iterrows():
@@ -135,12 +138,20 @@ if st.button('Show tumor-associated genes'):
                     final['Gene'].append(gene)
                     final['log2(FC)'].append(log2_FC)
                     final['FC'].append(2**log2_FC)
+                    if gene in experimental_pm_genes:
+                        final['HPA membrane location'].append('Yes')
+                    else:
+                        final['HPA membrane location'].append('No')
             else:
                 if row[tumor] <= log2FC:
                     selected_genes.append(gene)
                     final['Gene'].append(gene)
                     final['log2(FC)'].append(log2_FC)
                     final['FC'].append(2**log2_FC)
+                    if gene in experimental_pm_genes:
+                        final['HPA membrane location'].append('Yes')
+                    else:
+                        final['HPA membrane location'].append('No')
         if not selected_genes:
             max_FC = 2 ** data[tumor].max()
             min_FC = 2 ** data[tumor].min()
