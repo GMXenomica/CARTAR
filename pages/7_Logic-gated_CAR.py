@@ -101,6 +101,9 @@ abbreviations = {'ACC':'Adrenocortical carcinoma','BLCA':'Bladder Urothelial Car
                  'TGCT':'Testicular Germ Cell Tumors','THCA':'Thyroid carcinoma','THYM':'Thymoma',
                  'UCEC':'Uterine Corpus Endometrial Carcinoma','UCS':'Uterine Carcinosarcoma'}
 
+experimental_pm_file = open('Data/HPA_evidence_pm.csv','r')
+for line in experimental_pm_file:
+    experimental_pm_genes = line.split(',')
 gene1 = st.text_input('Enter first gene symbol').upper().strip(' ')
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
@@ -279,6 +282,20 @@ if st.button(f'Show correlation'):
             st.write(
                 f'The table below displays the expression values of each gene for all samples. You can enhance your exploration by clicking on the column names to sort the tumors based on that column either from highest to lowest or vice versa.'
             )
+            if gene1 in experimental_pm_genes and gene2 not in experimental_pm_genes:
+                st.write(
+                    f'**{gene1} has been experimetally reported to be located in the plasma membrane.**'
+                )
+            elif gene1 not in experimental_pm_genes and gene2 in experimental_pm_genes:
+                st.write(
+                    f'**{gene2} has been experimetally reported to be located in the plasma membrane.**'
+                )
+            elif gene1 in experimental_pm_genes and gene2 in experimental_pm_genes:
+                st.write(
+                    f'**{gene1} and {gene2} have been experimetally reported to be located in the plasma membrane.**'
+                )
+            else: 
+                st.write(f'**Neither of the proteins have been experimentally reported to be located in the plasma membrana.**')
             st.dataframe(table_data, hide_index=True)
             table = table_data.to_csv(encoding='utf-8', index=False)
             b64 = base64.b64encode(table.encode()).decode()
