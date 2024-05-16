@@ -97,6 +97,9 @@ abbreviations = {'ACC':'Adrenocortical carcinoma','BLCA':'Bladder Urothelial Car
                  'UCEC':'Uterine Corpus Endometrial Carcinoma','UCS':'Uterine Carcinosarcoma'}
 
 gene = st.text_input('Enter gene symbol').upper().strip(' ')
+experimental_pm_file = open('Data/HPA_evidence_pm.csv','r')
+for line in experimental_pm_file:
+    experimental_pm_genes = line.split(',')
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
 exclude = open('Data/no_membrane_genes.csv','r')
@@ -229,6 +232,10 @@ if st.button('Create barplot'):
         st.write(
             f'The median values for each sample group in the selected tumors are displayed in the table below. The median values for each sample group in the selected tumors are displayed in the table below. If you want to explore the log2(Fold Change) between \"Primary tumor\" and \"Control\" samples, along with the statistical significance, please visit [**Tumor Gene Expression Tool**](https://cartar-car-targets.streamlit.app/Tumor_gene_expression). You can click on the column names to sort the tumors based on that column in ascending or descending order. Please note that **p-values under 0.001 are rounded to 0**; for the complete decimal value, click on the respective cell.'
         )
+        if gene in experimental_pm_genes:
+            st.write(
+                f'**{gene} has been experimetally reported to be located in the plasma membrane.**'
+            )
         st.dataframe(table_data, hide_index=True)
         table = table_data.to_csv(encoding='utf-8', index=False)
         b64 = base64.b64encode(table.encode()).decode()
