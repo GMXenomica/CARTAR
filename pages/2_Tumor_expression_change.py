@@ -93,6 +93,9 @@ abbreviations = {'ACC':'Adrenocortical carcinoma','BLCA':'Bladder Urothelial Car
                  'UCEC':'Uterine Corpus Endometrial Carcinoma','UCS':'Uterine Carcinosarcoma'}
 
 genes = st.text_input('Enter gene symbols of interest (separated by commas or spaces):').upper().strip(' ')
+experimental_pm_file = open('Data/HPA_evidence_pm.csv','r')
+for line in experimental_pm_file:
+    experimental_pm_genes = line.split(',')
 correct_genes = []
 # Identify if indicated gene is present in the data
 exclude = open('Data/no_membrane_genes.csv','r')
@@ -117,6 +120,14 @@ else:
                 st.error(f'{gene} gene symbol not found')
         else:
             correct_genes.append(gene)
+HPA_membrane = ""
+for gene in correct_genes:
+    if gene in experimental_pm_genes:
+        HPA_membrane += f'{gene} , '
+if HPA_membrane[-2:] == ', ':
+    HPA_membrane = HPA_membrane[:-2]
+parts = HPA_membrane.rsplit(',', 1)
+HPA_membrane = ' and'.join(parts)
 tumors = st.multiselect('Select tumors (optional)', tumor_options)
 # Expander to show abbreviation meaning
 with st.expander('Extension of tumor abbreviations\' meaning'):
@@ -150,7 +161,7 @@ if st.button('Show Fold Change'):
                     if field in tumors:
                         indexes.append(f'{field}_{fields.index(field)}')
                 firstline = 0
-            # Identify the correspondinf fold change for the introduced tumors in the desired scale
+            # Identify the corresponding fold change for the introduced tumors in the desired scale
             else: 
                 for gene in correct_genes:
                     if fields[0] == gene:
@@ -173,6 +184,14 @@ if st.button('Show Fold Change'):
         st.write(
             f'The {scale} expression for the specified genes between the "Primary tumor" and "Control" samples is displayed in the table below. To determine whether the expression difference is statistically significant across these conditions, refer to the [**Tumor Gene Expression Tool**](https://cartar-car-targets.streamlit.app/Tumor_gene_expression). For insights into whether any gene is expressed in healthy GTEx tissues, visit the [**Tissue Gene Expression Tool**](https://cartar-car-targets.streamlit.app/Tissue_gene_expression) to assess its specificity. Click on the column names to sort the tumors based on the respective column in ascending or descending order.'
         )
+        if 'and' in HPA_membrane:
+            st.write(
+                f'**{HPA_membrane} have been experimetally reported to be located in the plasma membrane.**'
+            )
+        else:
+            st.write(
+                f'**{HPA_membrane} has been experimetally reported to be located in the plasma membrane.**'
+            )   
         st.dataframe(table_data, hide_index=True)
         table = table_data.to_csv(encoding='utf-8', index=False)
         b64 = base64.b64encode(table.encode()).decode()
