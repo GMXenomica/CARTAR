@@ -219,7 +219,10 @@ if st.button('Show tumor-associated genes'):
             else:
                 st.write(
                     f'The table below presents all relevant data, encompassing the log2(FC) between "Primary {tumor} tumor" and "Control" samples, along with the p-value and adjusted p-value for each gene below the specified threshold. You can enhance exploration by clicking on the column names to arrange genes based on that column, either from higher to lower or vice versa. Please note that **p-values under 0.001 are rounded to 0**; for the complete decimal value, click on the respective cell.'
-                )           
+                )  
+            st.write(
+                'The **HPA (Human Protein Atlas) membrane location column** will be "Yes" if the protein has been experimentally reported to be located in the plasma membrane and "No" when they are only located in the membrane arocding to the Gene Ontology, without havin been experimentally located in the plasma membrane by Human Protien Atlas'
+            )
             st.dataframe(table_data, hide_index=True)
             table = table_data.to_csv(encoding='utf-8', index=False)
             b64 = base64.b64encode(table.encode()).decode()
