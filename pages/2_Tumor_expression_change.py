@@ -186,11 +186,11 @@ if st.button('Show Fold Change'):
         )
         if 'and' in HPA_membrane:
             st.write(
-                f'**{HPA_membrane} have been experimetally reported to be located in the plasma membrane.**'
+                f'**{HPA_membrane} have been experimetally reported to be located in the plasma membrane by the Human Protein Atlas.**'
             )
         else:
             st.write(
-                f'**{HPA_membrane} has been experimetally reported to be located in the plasma membrane.**'
+                f'**{HPA_membrane} has been experimetally reported to be located in the plasma membrane by the Human Protein Atlas.**'
             )   
         st.dataframe(table_data, hide_index=True)
         table = table_data.to_csv(encoding='utf-8', index=False)
