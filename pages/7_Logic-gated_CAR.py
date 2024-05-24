@@ -284,18 +284,18 @@ if st.button(f'Show correlation'):
             )
             if gene1 in experimental_pm_genes and gene2 not in experimental_pm_genes:
                 st.write(
-                    f'**{gene1} has been experimetally reported to be located in the plasma membrane.**'
+                    f'**{gene1} has been experimetally reported to be located in the plasma membrane by the Human Protein Atlas.**'
                 )
             elif gene1 not in experimental_pm_genes and gene2 in experimental_pm_genes:
                 st.write(
-                    f'**{gene2} has been experimetally reported to be located in the plasma membrane.**'
+                    f'**{gene2} has been experimetally reported to be located in the plasma membrane by the Human Protein Atlas.**'
                 )
             elif gene1 in experimental_pm_genes and gene2 in experimental_pm_genes:
                 st.write(
-                    f'**{gene1} and {gene2} have been experimetally reported to be located in the plasma membrane.**'
+                    f'**{gene1} and {gene2} have been experimetally reported to be located in the plasma membrane by the Human Protein Atlas.**'
                 )
             else: 
-                st.write(f'**Neither of the proteins have been experimentally reported to be located in the plasma membrana.**')
+                st.write(f'**Neither of the proteins have been experimentally reported to be located in the plasma membrana by the Human Protein Atlas.**')
             st.dataframe(table_data, hide_index=True)
             table = table_data.to_csv(encoding='utf-8', index=False)
             b64 = base64.b64encode(table.encode()).decode()
