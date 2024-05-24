@@ -203,7 +203,7 @@ def plot_significance(tumor,y,bottom,top):
     )
     if gene in experimental_pm_genes:
         st.write(
-            f'**{gene} has been experimetally reported to be located in the plasma membrane.**'
+            f'**{gene} has been experimetally reported to be located in the plasma membrane by the Human Protein Atlas.**'
         )
     st.dataframe(table_data, hide_index=True)
     table = table_data.to_csv(encoding='utf-8', index=False)
