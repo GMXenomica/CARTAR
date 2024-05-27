@@ -91,7 +91,7 @@ exclude = open('Data/no_membrane_genes.csv','r')
 for line in exclude:
     no_membrane = line.split(',')
 if gene == '':
-    st.error('Introduce gene symbol. You can try CEACAM6')
+    st.error('Introduce gene symbol. You can try FGFR1')
 elif gene != '' and gene not in data['gene'].values:
     if gene in no_membrane:
         st.error(f'The protein encoded by {gene} is not located at the membrane')
@@ -223,9 +223,8 @@ if st.button(f'Create {plot}'):
         for group in SKCM[gene]['SKCM'].keys():
             for value in SKCM[gene]['SKCM'][group]:
                 if group == 'Normal':
-                    groups.append('Control')
-                else:
-                    groups.append(group)
+                    group = 'Control'
+                groups.append(group)
                 if scale == 'log2(TPM+1)':
                     value = log2(value+1)
                 values.append(value)
@@ -269,4 +268,4 @@ if st.button(f'Create {plot}'):
     elif gene == '':
         st.error('No gene symbol was introduced')  
     elif gene not in data['gene'].values:
-        st.error(f'{gene} gene symbol not found')       
+        st.error(f'{gene} gene symbol not found')           
