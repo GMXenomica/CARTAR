@@ -194,9 +194,8 @@ if st.button(f'Show correlation'):
                 for group in tcga[gene1][tumor].keys():
                     for value in tcga[gene1][tumor][group]:
                         if group == 'Normal':
-                            groups.append('Control')
-                        else:
-                            groups.append(group)
+                            group = 'Control'
+                        groups.append(group)
                         if scale == 'log2(TPM+1)':
                             value = log2(value+1)
                         values1.append(value)
@@ -224,9 +223,8 @@ if st.button(f'Show correlation'):
                 for group in tcga1[gene1][tumor].keys():
                     for value in tcga1[gene1][tumor][group]:
                         if group == 'Normal':
-                            groups.append('Control')
-                        else:
-                            groups.append(group)
+                            group = 'Control'
+                        groups.append(group)
                         if scale == 'log2(TPM+1)':
                             value = log2(value+1)
                         values1.append(value)
@@ -251,9 +249,6 @@ if st.button(f'Show correlation'):
                         if scale == 'log2(TPM+1)':
                             value = log2(value+1)
                         values2.append(value)  
-            print(len(groups))
-            print(len(values1))
-            print(len(values2))
             data = {'Sample':groups, f'{gene1} expression':values1, f'{gene2} expression':values2}
             # Create correlation plot
             df = pd.DataFrame(data)          
