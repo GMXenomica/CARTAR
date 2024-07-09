@@ -202,6 +202,8 @@ def plot_significance(tumors,y):
     b64 = base64.b64encode(table.encode()).decode()
     href = f'<a href="data:file/csv;base64,{b64}" download="table.csv">Download CSV File</a>'
     st.markdown(href, unsafe_allow_html=True)
+    st.header('Cite us')
+    st.markdown('Please kindly cite us if you used this tool for your research: __Miguel Hernandez-Gamarra, Alba Salgado-Roo, Eduardo Dominguez, Elena María Goiricelaya Seco, Sara Veiga-Rúa, Lucía F Pedrera-Garbayo, Ángel Carracedo, Catarina Allegue, CARTAR: a comprehensive web tool for identifying potential targets in chimeric antigen receptor therapies using TCGA and GTEx data, Briefings in Bioinformatics, Volume 25, Issue 4, July 2024, bbae326, https://doi.org/10.1093/bib/bbae326.__')
     
 # Dictionary with the tumor:GTEx healthy tissue correspondance
 gtex_tcga = {'ACC':'Adrenal Gland','BLCA':'Bladder','BRCA':'Breast','CESC':'Cervix Uteri', 'COAD':'Colon', 'DLBC':'Blood',
