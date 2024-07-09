@@ -35,6 +35,6 @@ st.markdown('- __Metastatic gene expression:__ analyze expression values of a sp
 st.markdown('- __Logic-gated CAR:__ explore the correlation between the expression values of two genes in primary tumor and control samples of a specified tumor for the design of dual- targeting CAR therapy.')
 st.markdown('- __Cell line selector:__ identify cancer cell lines with desired expression values of target gene.')
 st.markdown('### Cite us')
-st.markdown('Please kidnly cite us if you used this tool for your research: __Miguel Hernandez-Gamarra, Alba Salgado-Roo, Eduardo Dominguez, Elena María Goiricelaya Seco, Sara Veiga-Rúa, Lucía F Pedrera-Garbayo, Ángel Carracedo, Catarina Allegue, CARTAR: a comprehensive web tool for identifying potential targets in chimeric antigen receptor therapies using TCGA and GTEx data, Briefings in Bioinformatics, Volume 25, Issue 4, July 2024, bbae326, https://doi.org/10.1093/bib/bbae326.__')
+st.markdown('Please kindly cite us if you used this tool for your research: __Miguel Hernandez-Gamarra, Alba Salgado-Roo, Eduardo Dominguez, Elena María Goiricelaya Seco, Sara Veiga-Rúa, Lucía F Pedrera-Garbayo, Ángel Carracedo, Catarina Allegue, CARTAR: a comprehensive web tool for identifying potential targets in chimeric antigen receptor therapies using TCGA and GTEx data, Briefings in Bioinformatics, Volume 25, Issue 4, July 2024, bbae326, https://doi.org/10.1093/bib/bbae326.__')
 st.markdown('### Contact us')
 st.markdown('For any questions or requests about CARTAR, please contact us: miguel.gamarra@usc.es')
