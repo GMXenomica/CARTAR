@@ -34,7 +34,7 @@ def create_footer():
     with footer_container:
         st.markdown("<br>" * 1, unsafe_allow_html=True)  # Añade espacio en blanco
         st.markdown("""
-        <div style="background-color: #f0f2f6; padding: 10px; text-align: center; font-size: 10.5px;">
+        <div style="background-color: #f0f2f6; padding: 10px; text-align: center; font-size: 11.5px;">
             How to cite: Miguel Hernandez-Gamarra, Alba Salgado-Roo, Eduardo Dominguez, Elena María Goiricelaya Seco, Sara Veiga-Rúa, Lucía F Pedrera-Garbayo, Ángel Carracedo, Catarina Allegue, CARTAR: a comprehensive web tool for identifying potential targets in chimeric antigen receptor therapies using TCGA and GTEx data, Briefings in Bioinformatics, Volume 25, Issue 4, July 2024, bbae326, <a href="https://doi.org/10.1093/bib/bbae326">https://doi.org/10.1093/bib/bbae326</a>.
         </div>
         """, unsafe_allow_html=True)
