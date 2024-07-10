@@ -169,4 +169,4 @@ if st.button('Show Fold Change'):
             st.error('No gene symbol was introduced')
         else:
             st.error('Please check if the intorduce gene symbol is found or if gene symbols are introduced separated by commas without spaces or separated by one space as in the following example: **EGFR,FGFR1,CD19** or **EGFR FGFR1 CD19**')
-create_foot()
+create_footer()
