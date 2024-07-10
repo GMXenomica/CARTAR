@@ -16,6 +16,17 @@ mystyle = '''
     </style>
     '''
 
+# Create footer
+def create_footer():
+    footer_container = st.container()
+    with footer_container:
+        st.markdown("<br>" * 1, unsafe_allow_html=True)  # Añade espacio en blanco
+        st.markdown("""
+        <div style="background-color: #f0f2f6; padding: 10px; text-align: center; font-size: 10.5px;">
+            How to cite: Miguel Hernandez-Gamarra, Alba Salgado-Roo, Eduardo Dominguez, Elena María Goiricelaya Seco, Sara Veiga-Rúa, Lucía F Pedrera-Garbayo, Ángel Carracedo, Catarina Allegue, CARTAR: a comprehensive web tool for identifying potential targets in chimeric antigen receptor therapies using TCGA and GTEx data, Briefings in Bioinformatics, Volume 25, Issue 4, July 2024, bbae326, <a href="https://doi.org/10.1093/bib/bbae326">https://doi.org/10.1093/bib/bbae326</a>.
+        </div>
+        """, unsafe_allow_html=True)
+
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Welcome to CARTAR')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
@@ -34,7 +45,6 @@ st.markdown('- __Tissue gene expression:__ study off-tumor gene expression to as
 st.markdown('- __Metastatic gene expression:__ analyze expression values of a specific gene across primary tumor, metastatic and control samples on Skin Cutaneous Melanoma (SKCM).')
 st.markdown('- __Logic-gated CAR:__ explore the correlation between the expression values of two genes in primary tumor and control samples of a specified tumor for the design of dual- targeting CAR therapy.')
 st.markdown('- __Cell line selector:__ identify cancer cell lines with desired expression values of target gene.')
-st.markdown('### Cite us')
-st.markdown('Please kindly cite us if you used this tool for your research: __Miguel Hernandez-Gamarra, Alba Salgado-Roo, Eduardo Dominguez, Elena María Goiricelaya Seco, Sara Veiga-Rúa, Lucía F Pedrera-Garbayo, Ángel Carracedo, Catarina Allegue, CARTAR: a comprehensive web tool for identifying potential targets in chimeric antigen receptor therapies using TCGA and GTEx data, Briefings in Bioinformatics, Volume 25, Issue 4, July 2024, bbae326, https://doi.org/10.1093/bib/bbae326.__')
 st.markdown('### Contact us')
 st.markdown('For any questions or requests about CARTAR, please contact us: miguel.gamarra@usc.es')
+create_footer()
