@@ -32,6 +32,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Create footer
+def create_footer():
+    footer_container = st.container()
+    with footer_container:
+        st.markdown("<br>" * 1, unsafe_allow_html=True)  # Añade espacio en blanco
+        st.markdown("""
+        <div style="background-color: #f0f2f6; padding: 10px; text-align: center; font-size: 10.5px;">
+            How to cite: Miguel Hernandez-Gamarra, Alba Salgado-Roo, Eduardo Dominguez, Elena María Goiricelaya Seco, Sara Veiga-Rúa, Lucía F Pedrera-Garbayo, Ángel Carracedo, Catarina Allegue, CARTAR: a comprehensive web tool for identifying potential targets in chimeric antigen receptor therapies using TCGA and GTEx data, Briefings in Bioinformatics, Volume 25, Issue 4, July 2024, bbae326, <a href="https://doi.org/10.1093/bib/bbae326">https://doi.org/10.1093/bib/bbae326</a>.
+        </div>
+        """, unsafe_allow_html=True)
+
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Gene median expression across tumors')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
@@ -198,9 +209,8 @@ if st.button('Create barplot'):
         b64 = base64.b64encode(table.encode()).decode()
         href = f'<a href="data:file/csv;base64,{b64}" download="table.csv">Download CSV File</a>'
         st.markdown(href, unsafe_allow_html=True) 
-        st.header('Cite us')
-        st.markdown('Please kindly cite us if you used this tool for your research: __Miguel Hernandez-Gamarra, Alba Salgado-Roo, Eduardo Dominguez, Elena María Goiricelaya Seco, Sara Veiga-Rúa, Lucía F Pedrera-Garbayo, Ángel Carracedo, Catarina Allegue, CARTAR: a comprehensive web tool for identifying potential targets in chimeric antigen receptor therapies using TCGA and GTEx data, Briefings in Bioinformatics, Volume 25, Issue 4, July 2024, bbae326, https://doi.org/10.1093/bib/bbae326.__')
     elif gene == '':
         st.error('No gene symbol was introduced')
     elif gene not in data['gene'].values:
         st.error(f'{gene} gene symbol not found')  
+create_foot()
