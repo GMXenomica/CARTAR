@@ -312,4 +312,4 @@ if st.button(f'Create {plot}'):
         st.error('No gene symbol was introduced')  
     elif gene not in data['gene'].values:
         st.error(f'{gene} gene symbol not found')
-create_foot()
+create_footer()
