@@ -177,9 +177,9 @@ if st.button('Find cell lines'):
             fig.update_traces(hovertemplate='%{customdata}')
             # Customize graph titile and axis names
             if scale == 'log2(TPM+1)':
-                fig.update_layout(title=f'{gene} expression comparison between desired cell lines', title_x=0.25, xaxis_title='Cell lines', yaxis_title= f'{gene} expression in log2(TPM+1)')
+                fig.update_layout(title=f'{gene} expression in cell lines of interest', title_x=0.25, xaxis_title='Cell lines', yaxis_title= f'{gene} expression in log2(TPM+1)')
             else:
-                fig.update_layout(title=f'{gene} expression comparison between desired cell lines', title_x=0.25, xaxis_title='Cell lines', yaxis_title= f'{gene} expression in TPM')
+                fig.update_layout(title=f'{gene} expression in cell lines of interest', title_x=0.25, xaxis_title='Cell lines', yaxis_title= f'{gene} expression in TPM')
             # Show interactive plot
             st.header('Interactive barplot', divider='rainbow')
             st.plotly_chart(fig,use_container_width=True)
@@ -212,3 +212,4 @@ if st.button('Find cell lines'):
     if value == '':
         st.error('No threshold was introduced')
 create_footer()
+
