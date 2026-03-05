@@ -6,6 +6,7 @@ import numpy as np
 import seaborn as sns
 import pickle
 from scipy.stats import mannwhitneyu
+from scipy.stats import kruskal 
 import base64
 
 st.set_page_config(page_title='CARTAR', page_icon='logo.png',layout='wide')
@@ -62,27 +63,28 @@ def create_footer():
 st.markdown(mystyle, unsafe_allow_html=True)
 st.title('Metastatic gene expression in SKCM')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
-st.write('This tool can be used to generate boxplots, violin plots, or dot plots for the expression values of a gene of interest for the "Primary tumor", "Metastatic", and "Control" samples of **Skin Cutaneous Melanoma (SKCM)**. SKCM is the only TCGA tumor group with sufficient "Metastatic" sample size (N=366) to get statistical significance of differential expression. Besides, median expression values, sample sizes for each group, and statistical significance of differential expression between sample groups are reported in table format.')
+st.write('This tool can be used to generate boxplots, violin plots, or dot plots for the expression values of a gene of interest for the "Primary tumor", "Metastatic" and "Control" samples of **Skin Cutaneous Melanoma (SKCM)**. SKCM is the only TCGA tumor group with sufficient "Metastatic" sample size (N=366) to get statistical significance of differential expression. Besides, median expression values, sample sizes for each group, and statistical significance of differential expression between sample groups are reported in table format.')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 scale_options = ['TPM','log2(TPM+1)']
 plot_options = ['Boxplot','Violin plot','Dot plot']
 gene = st.text_input('Enter gene symbol').upper().strip(' ')
+# Open files to identify location of the genes
 experimental_pm_file = open('Data/HPA_evidence_pm.csv','r')
 for line in experimental_pm_file:
     experimental_pm_genes = line.split(',')
+no_membrane = open('Data/no_membrane_genes.csv','r')
+for line in no_membrane:
+    no_membrane_genes = line.split(',')
 # Identify if indicated gene is present in the data
 data = pd.read_csv('Data/log2FC_expression.csv')
-exclude = open('Data/no_membrane_genes.csv','r')
-for line in exclude:
-    no_membrane = line.split(',')
 if gene == '':
     st.error('Introduce gene symbol. You can try FGFR1')
+if 'MORF' not in gene:
+    if 'ORF' in gene:
+        gene = gene.replace('ORF','orf')
 elif gene != '' and gene not in data['gene'].values:
-    if gene in no_membrane:
-        st.error(f'The protein encoded by {gene} is not located at the membrane')
-    else:
-        st.error(f'{gene} gene symbol not found')
+    st.error(f'{gene} gene symbol not found')
 selection = st.radio('Select plot', plot_options)
 if selection == 'Boxplot':
     plot = 'Boxplot'
@@ -98,7 +100,7 @@ elif selection2 == 'log2(TPM+1)':
 st.info('TPM = Transcript Per Million')
 
 # Calculate statistical significance and customize plot function
-def plot_significance(tumor,y,bottom,top):
+def plot_significance(tumor,y,bottom,top,K_pvalue):
     significant_combinations = []
     data = {'Groups compared':[],'Median Group 1':[],'Group 1 sample size':[], 'Median Group 2':[],'Group 2 sample size':[], 'log2(Fold Change)':[],'Significance':[],'p-value':[]}
     # Get the y-axis limits
@@ -179,32 +181,29 @@ def plot_significance(tumor,y,bottom,top):
     plt.subplots_adjust(left=0.067, bottom=0.155, right=0.968, top=0.91)
     # Show the graph and table
     st.header(plot, divider='rainbow')
-    st.pyplot()
-    st.write(
-        f'The above figure illustrates the {plot} for {gene} expression in {scale} across "Metastatic," "Primary tumor," and "Control" SKCM samples, comparing the expression between these groups. Statistical significance is denoted for each SKCM group (***: p_value < 0.001, **: p_value < 0.01, *: p_value < 0.05).'
-    )
+    st.pyplot(plt)
+    K_pvalue_formatted = f'{K_pvalue:.2e}'
+    if K_pvalue<0.05:
+        st.write(f'The above figure illustrates the {plot} for {gene} expression in {scale} across "Metastatic" "Primary tumor" and "Control" SKCM samples, comparing the expression between these groups with **Mann-Whitney U test**. Statistical significance is denoted for each SKCM group (***: p_value < 0.001, **: p_value < 0.01, *: p_value < 0.05). The **Kruskal-Wallis test** indicates that there are :red[statistical differences] between the groups with a p_value of {K_pvalue_formatted}.')
+    else:
+        st.write(f'The above figure illustrates the {plot} for {gene} expression in {scale} across "Metastatic" "Primary tumor" and "Control" SKCM samples, comparing the expression between these groups with **Mann-Whitney U test**. Statistical significance is denoted for each SKCM group (***: p_value < 0.001, **: p_value < 0.01, *: p_value < 0.05). The **Kruskal-Wallis test** indicates that there are :red[no statistical differences] between the groups with a p_value of {K_pvalue_formatted}.')
     st.header('Data table', divider='rainbow')
-    st.write(
-        f'All relevant information is presented in the table below, encompassing critical aspects such as the log2(Fold Change) for each comparison. Computed as the log2(TPM+1) median of SKCM Group 1 expression minus the log2(TPM+1) median of SKCM Group 2 expression. For ease of exploration, you can click on the column names to arrange the rows based on the selected column, either in ascending or descending order. Please note that **p-values under 0.001 are rounded to 0**; for the complete decimal value, click on the respective cell.'
-    )
+    st.write(f'All relevant information is presented in the table below, encompassing critical aspects such as the log2(Fold Change) for each comparison. Computed as the log2(TPM+1) median of SKCM Group 1 expression minus the log2(TPM+1) median of SKCM Group 2 expression. For ease of exploration, you can click on the column names to arrange the rows based on the selected column, either in ascending or descending order. Please note that **p-values under 0.001 are rounded to 0**; for the complete decimal value, click on the respective cell.')
     if gene in experimental_pm_genes:
-        st.write(
-            f'**{gene} has been experimetally reported to be located in the plasma membrane by the Human Protein Atlas.**'
-        )
+        st.write(f'**{gene}** ([NCBI](https://www.ncbi.nlm.nih.gov/gene/?term=Homo+sapiens+{gene}), [HGNC](https://www.genenames.org/tools/search/#!/?query={gene})) has been **experimentally** reported to be **located in the plasma membrane** by the Human Protein Atlas.')
+    elif gene in no_membrane_genes:
+        st.write(f'**{gene}** ([NCBI](https://www.ncbi.nlm.nih.gov/gene/?term=Homo+sapiens+{gene}), [HGNC](https://www.genenames.org/tools/search/#!/?query={gene})) has **not** been reported to be **located in the plasma membrane** by the Gene Ontology.')      
+    else:
+        st.write(f'**{gene}** ([NCBI](https://www.ncbi.nlm.nih.gov/gene/?term=Homo+sapiens+{gene}), [HGNC](https://www.genenames.org/tools/search/#!/?query={gene})) has been reported to be **located in the plasma membrane** according to Gene Ontology, **but it has not been experimentally determined** by the Human Protein Atlas.')    
     st.dataframe(table_data, hide_index=True)
-    table = table_data.to_csv(encoding='utf-8', index=False)
-    b64 = base64.b64encode(table.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="table.csv">Download CSV File</a>'
-    st.markdown(href, unsafe_allow_html=True)
 
 if st.button(f'Create {plot}'):
     if gene != '' and gene in data['gene'].values: 
         # Identify GTEx tissue sample corresponding to control group of tumor
-        gtex_tcga = {'SKCM':'Skin'}
         with open('Data/SKCM.pkl', 'rb') as archivo:
             SKCM = pickle.load(archivo)
         # Get requested information
-        groups = [] # Gruops of tumor (Metastatic, Primary or Normal)
+        groups = [] # Gruops of tumor (Metastatic, Primary or Control)
         values = [] # Expression values
         for group in SKCM[gene]['SKCM'].keys():
             for value in SKCM[gene]['SKCM'][group]:
@@ -219,19 +218,23 @@ if st.button(f'Create {plot}'):
         group_order = ['Metastatic', 'Primary', 'Control']
         df['Tumor'] = pd.Categorical(df['Tumor'], categories=group_order, ordered=True)
         df = df.sort_values(by=['Tumor'])
+        metastatic = df[df['Tumor'] == 'Metastatic']['Values'].tolist()
+        primary = df[df['Tumor'] == 'Primary']['Values'].tolist()
+        control = df[df['Tumor'] == 'Control']['Values'].tolist()
+        H, K_pvalue = kruskal(metastatic, primary, control)
         # Create the boxplot
         if plot == 'Boxplot':
             plt.figure()
             sns.boxplot(data=df, x='Tumor', y='Values', hue='Tumor', legend=False, showfliers=False, palette={'Primary': 'lightseagreen', 'Control': 'tan', 'Metastatic':'grey'})
             xmin, xmax, ymin, ymax = plt.axis()
             # Statistical significant differences and customize the plot
-            plot_significance('SKCM',0,ymin,ymax)
+            plot_significance('SKCM',0,ymin,ymax,K_pvalue)
         # Create the violin plot
         if plot == 'Violin plot':
             sns.violinplot(x='Tumor', y='Values', hue='Tumor', data=df, inner='quartile', density_norm='width',palette={'Primary': 'lightseagreen', 'Control': 'tan', 'Metastatic':'grey'}, legend=False)
             xmin, xmax, ymin, ymax = plt.axis()
             # Statistical significant differences and customize the plot
-            plot_significance('SKCM',1,ymin,ymax)        
+            plot_significance('SKCM',1,ymin,ymax,K_pvalue)        
         # Create the dotplot
         if plot == 'Dot plot':
             sns.stripplot(x='Tumor', y='Values', jitter=True, data=data, hue='Tumor', size=4, palette={'Primary': 'lightseagreen', 'Control': 'tan', 'Metastatic':'grey'})
@@ -250,9 +253,10 @@ if st.button(f'Create {plot}'):
                     [median, median], lw=1, c='k', zorder=10000
                 )
             # Statistical significant differences and customize the plot
-            plot_significance('SKCM',1,ymin,ymax) 
-    elif gene == '':
-        st.error('No gene symbol was introduced')  
+            plot_significance('SKCM',1,ymin,ymax,K_pvalue)        
     elif gene not in data['gene'].values:
-        st.error(f'{gene} gene symbol not found')           
+        st.error(f'{gene} gene symbol not found')
+    else:
+        st.error('No gene symbol was introduced')        
+
 create_footer()
